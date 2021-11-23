@@ -5,36 +5,44 @@
 // Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
 // Dichiariamo chi ha vinto.
 
+const userChoice = prompt('Inserisci "pari" o "dispari"');
+let userNumber = 0;
 
-const userChoice = prompt('Inserisci la tua scelta: ');
+if (userChoice === 'pari' || userChoice === 'dispari'){
+    console.log('Risposta utente: ' + userChoice);
 
-let pcNumber = '';
-let userNumberChoise = '';
+    userNumber = parseInt(prompt('Inserisci un numero: '));
+    console.log('User Number ' + userNumber);
 
-if(userChoice === 'dispari' || userChoice === 'pari'){
-    userNumberChoise = parseInt(prompt('Inserisci numero da 1 - 5'));
-    console.log('Scelta utente: ' + userChoice);
-
-    if( userNumberChoise <= 5 && userNumberChoise >= 0 ){
-        console.log('Numero utente: ' + userNumberChoise);
-        let pcNum = _random(pcNumber);
-        console.log('Numero pc: ' + pcNumber);
-        let somma = dispPari(userNumberChoise, pcNumber);
-        console.log('Somma: ' + somma);
-
-    }
-}else{
-    alert('error');
-}
-
-function _random(pcNumber){
-    pcN = parseInt(Math.floor(Math.random() * 6));
-    return pcN;
-}
-
-function dispPari(pcNumber, userNumberChoise){
-
-    let sum = pcNumber + userNumberChoise;
-    return sum;
+    const pcNumber = getRndInteger(1, 5);
+    console.log('Pc Number ' + pcNumber);
     
+    pariOrDispari();
+
+}else{
+    alert('Error !');
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+function pariOrDispari(num1, num2){
+    let sum = num1 + num2;
+    if (sum % 2 === 0){
+        alert('Pari');
+        risultato = 'pari';
+    }else{
+        alert('Dispari');
+        risultato = 'dispari';
+    }
+
+    if(userChoice === 'pari' && risultato === 'pari'){
+        alert('Hai vinto')
+    }else if (userChoice === 'pari' && risultato === 'dispari'){
+        alert('Hai perso')
+    }else if(userChoice === 'dispari' && risultato === 'pari'){
+        alert('Hai perso')
+    }else if (userChoice === 'dispari' && risultato === 'dispari'){
+        alert('Hai vinto')
+    }
 }
